@@ -8,14 +8,17 @@ from albumentations.pytorch import ToTensorV2
 
 
 # Directories and File Locations.
-ORIGINAL_IMAGE_DIRECTORY = './data/original_images'
-WATERMARKED_IMAGE_DIRECTORY = './data/watermarked_images'
-TRAINING_DATA_DIRECTORY = './data/train_data'
-VAL_DATA_DIRECTORY = "./data/val_data"
+ORIGINAL_IMAGE_DIRECTORY = '../data/original_images'
+WATERMARKED_IMAGE_DIRECTORY = '../data/watermarked_images'
+TRAINING_DATA_DIRECTORY = '../data/train_data'
+VAL_DATA_DIRECTORY = "../data/val_data"
 CHECKPOINT_DIRECTORY = "./checkpoints"
-EVALUATION_DIRECTORY = "./evaluation"
+EVALUATION_DIRECTORY = "../evaluation"
 CHECKPOINT_DISC = "./checkpoints/disc.pth.tar"
 CHECKPOINT_GEN = "./checkpoints/gen.pth.tar"
+
+# Image Download Settings
+TOTAL_NUM_OF_IMAGES = 16_707
 
 # Training Device Configurations
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -23,8 +26,8 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 # Model Configurations
 LEARNING_RATE = 2e-4
 BATCH_SIZE = 16
-NUM_EPOCHS = 300
-NUM_WORKERS = 2
+NUM_EPOCHS = 100
+NUM_WORKERS = 4
 CHANNELS_IMG = 3
 L1_LAMBDA = 100
 LAMBDA_GP = 10
@@ -49,6 +52,3 @@ transform_only_mask = A.Compose(
     [A.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5], max_pixel_value=255.0),
      ToTensorV2()]
 )
-
-
-print(DEVICE)

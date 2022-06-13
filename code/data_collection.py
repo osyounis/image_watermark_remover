@@ -63,11 +63,11 @@ def collect_images_from_dataset(photo_url: str, filename: str) -> None:
         image_bytes = requests.get(f"{photo_url}?fit=crop&w=600&h=600", timeout=30)
     
     except requests.exceptions.ConnectTimeout:
-        with open("./data/errors.txt", 'a') as f_obj:
+        with open("errors.txt", 'a') as f_obj:
             f_obj.write(f"{filename}, CONNECTION TIMEOUT, Unable to connect to image\n")
         
     except requests.exceptions.ReadTimeout:
-        with open("./data/errors.txt", 'a') as f_obj:
+        with open("errors.txt", 'a') as f_obj:
             f_obj.write(f"{filename}, RESPONSE TIMEOUT, Unable to download image\n")
         
     # print(image_bytes.status_code)
@@ -120,7 +120,7 @@ def create_image_train_data(input_file: str, watermark_text: str, font_size: 10)
         new_image.save(settings.TRAINING_DATA_DIRECTORY + "/" + input_file)
     
     except:
-        with open("./data/errors.txt", 'a') as f_obj:
+        with open("errors.txt", 'a') as f_obj:
             f_obj.write(f"{input_file}, IMAGE CREATION ERROR, Unable to create train data image\n")
 
 
@@ -254,7 +254,7 @@ for directory in tqdm(needed_directories, desc="Checking Directories"):
     
 # Creating a DataFrame with the Unsplash Dataset with the information I need.
 df = pd.read_csv(
-    "./data/unsplash_research_dataset_lite_latest/photos.tsv000",
+    "../data/unsplash_dataset/photos.tsv000",
     sep="\t",
     header=0
 )
@@ -262,7 +262,7 @@ df = pd.read_csv(
 df = df[['photo_id', 'photo_image_url']]
 
 # Downloading original resized images.
-for i in tqdm(range(17_900, 100_000), desc="Downloading original images", total=100_000, initial=17_900):
+for i in tqdm(range(settings.TOTAL_NUM_OF_IMAGES + 1), desc="Downloading original images", total=settings.TOTAL_NUM_OF_IMAGES + 1):
     try:
         image_url = df['photo_image_url'][i]
         image_name = df['photo_id'][i]
@@ -270,7 +270,7 @@ for i in tqdm(range(17_900, 100_000), desc="Downloading original images", total=
         if i % 1000 == 0:
             time.sleep(5)
     except:
-        with open("./data/errors.txt", 'a') as f_obj:
+        with open("errors.txt", 'a') as f_obj:
             f_obj.write(f"{image_name}, UNKNOWN, Unable to download image\n")
         
 

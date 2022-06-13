@@ -59,18 +59,4 @@ class Discriminator(nn.Module):
         x = self.initial(x)
         x = self.model(x)
         return x
-
-
-
-
-def test():
-    x = torch.randn((1, 3, 256, 256))
-    y = torch.randn((1, 3, 256, 256))
-    model = Discriminator(in_channels=3)
-    preds = model(x, y)
-    print(model)
-    print(preds.shape)
-
-
-if __name__ == "__main__":
-    test()
+    

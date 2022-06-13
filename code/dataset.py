@@ -12,7 +12,6 @@ from torchvision.utils import save_image
 
 import settings
 
-Image.MAX_IMAGE_PIXELS = 1_000_000_000
 
 class WatermarkDataset(Dataset):
     def __init__(self, root_directory) -> None:

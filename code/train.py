@@ -94,7 +94,9 @@ def train_function(discriminator: object,
 
 
 def main() -> None:
-    
+    """This is the main function which is used to train the model. It also saves
+    checkpoints and creates image examples for evaluation purposes.
+    """
     # Getting Start Time and sending message.
     start_time = datetime.now()
     start_time = start_time.strftime("%m/%d/%Y, %H:%M:%S")
