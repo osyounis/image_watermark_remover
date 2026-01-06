@@ -1,4 +1,4 @@
-<img src="figures/Whale.png" width=75/><br/>
+![Project Banner](./figures/watermark-remover-banner.jpg)
 
 # Image Watermark Remover with Pytorch
 Many images on the internet contain watermarks, but sometimes you want the image without the watermark. In this project I implement a `Pix2Pix` model in Pytorch to remove watermarks from images. The dataset I used was created using [Unsplash's Lite Dataset](https://unsplash.com/data); a dataset which contains no watermarked images. I also used [Aladdin Persson's](https://www.youtube.com/c/AladdinPersson) YouTube tutorial as reference to implement the `Pix2Pix` model to remove watermarks.
